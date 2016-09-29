@@ -1,9 +1,10 @@
-html, input {
+html,
+input {
     font-family: "microsoft yahei";
 }
 
 body {
-    padding: 40px 0;
+    padding: 45px 0;
 }
 .main-header {
     position: fixed;
@@ -52,19 +53,44 @@ body {
 
     color: #007aff;
 }
-
+.contact-info {
+    margin-bottom: 20px;
+}
 .new-contact .contact-info input {
     display: block;
-    border: none;
-    outline: none;
+
+    box-sizing: border-box;
     width: 100%;
-    font-size: 16px;
     height: 40px;
     padding-left: 8%;
+
+    font-size: 16px;
+
+    border: none;
+    outline: none;
 }
 .divided {
-    height: 2px;
     width: 90%;
-    background-color: #ddd;
+    height: 2px;
     margin: 0 auto;
+
+    background-color: #ddd;
+}
+.add-phone-area {
+    padding-left: 20px;
+    border-bottom: 2px solid #ddd;
+}
+.add-phone-area .add-control {
+    height: 30px;
+}
+.add-phone-area .add-control span {
+    line-height: 24px;
+    font-size: 16px;
+    color: #007aff;
+}
+.icon-add-phone {
+    color: #5cb85c;
+    font-size: 25px;
+    float: left;
+    margin-right: 10px;
 }
