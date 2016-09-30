@@ -87,23 +87,24 @@ li {
 }
 .divided {
     width: 90%;
-    border-bottom: 2px solid #ddd;
     margin: 0 auto;
 
+    border-bottom: 2px solid #ddd;
 }
 
 
 
-.add-phone-area {
+.add-area {
+    margin-bottom: 70px;
     padding-left: 20px;
 
     border-bottom: 2px solid #ddd;
 }
 
-.add-phone-area li {
+.add-area li {
     border-bottom: 2px solid #ddd;
 }
-.add-phone-area .phone-type {
+.add-area .type {
     float: left;
 
     box-sizing: border-box;
@@ -114,17 +115,22 @@ li {
     border-right: 1px solid #ddd;
 }
 .icon-remove-phone {
-    font-size: 25px;
-    color: #d9534f;
     float: left;
+
+    font-size: 25px;
     line-height: 40px;
+
+    color: #d9534f;
 }
-.add-phone-area .phone-type-chose {
+.add-area .type-chose,
+.chose-area .type-chose {
     height: 40px;
     margin: 0 5px;
-    line-height: 40px;
+
     font-size: 16px;
     font-weight: 700;
+    line-height: 40px;
+
     color: #007aff;
     border: none;
     outline: none;
@@ -133,16 +139,19 @@ li {
        -moz-appearance: none; /* Firefox */
     -webkit-appearance: none; /* Safari 和 Chrome */
 }
-.add-phone-area .icon-icon10 {
-    color: #ccc;
+.add-area .icon-icon10 {
     float: right;
-    line-height: 40px;
+
     margin-right: 5px;
+
+    line-height: 40px;
+
+    color: #ccc;
 }
-.add-phone-area .phone-type-chose option {
+.add-area .type-chose option {
     text-align: center;
 }
-.add-phone-area input {
+.add-area input {
     float: left;
 
     box-sizing: border-box;
@@ -157,10 +166,10 @@ li {
 }
 
 
-.add-phone-area .add-control {
+.add-area .add-control {
     height: 60px;
 }
-.add-phone-area .add-control span {
+.add-area .add-control span {
     font-size: 16px;
     line-height: 60px;
 
@@ -170,8 +179,32 @@ li {
     float: left;
 
     margin-right: 10px;
-    line-height: 60px;
+
     font-size: 25px;
+    line-height: 60px;
 
     color: #5cb85c;
+}
+
+.chose-area {
+    border-bottom: 2px solid #ddd;
+    height: 40px;
+    padding-left: 55px;
+}
+.chose-area span {
+    color: #007aff;
+    margin-right: 30px;
+    float: left;
+    line-height: 40px;
+    width: 70px;
+}
+.chose-area .type-chose {
+    color: #000;
+    font-size: 18px;
+}
+
+
+.chose-area .icon-icon10 {
+    float: right;
+    line-height: 40px;
 }
