@@ -8,8 +8,8 @@ option {
 body {
     visibility: hidden;
     overflow-x: hidden;
-
-    padding: 45px 0;
+    position: relative;
+    padding: 40px 0;
 }
 
 li {
@@ -32,7 +32,10 @@ li {
 /* 基本样式区 end*/
 
 
-
+main {
+    position: absolute;
+    width: 100%;
+}
 /* 主页样式区  start*/
 main header,
 .new-contact header {
@@ -65,7 +68,22 @@ main header .icon-add {
 
     font-size: 20px;
 }
+main li {
+    box-sizing: border-box;
+    width: 100%;
+    height: 35px;
+    padding-left: 10px;
 
+    font-size: 16px;
+    line-height: 35px;
+}
+main li:nth-child(even) {
+    background-color: #eee;
+}
+main li:hover{
+    background-color: #ddd;
+    cursor: pointer;
+}
 main footer {
     position: fixed;
     z-index: 9999;
@@ -98,9 +116,8 @@ main footer .icon-cc-head {
     position: relative;
     right: 0;
 
-    transition: all .3s linear;
+    transition: all 0.3s linear;
 
-    opacity: 1;
 }
 
 
@@ -108,19 +125,20 @@ main footer .icon-cc-head {
 .new-contact-anim-leave {
     right: -100%;
 
-    opacity: 0;
 }
 
 /* 新联系人载入动画区 */
 
 
 .new-contact .save {
-    margin-right: 10px;
     float: right;
+
+    margin-right: 10px;
 }
 .new-contact .cancle {
-    margin-left: 10px;
     float: left;
+
+    margin-left: 10px;
 }
 .new-contact .contact-info {
     margin-bottom: 20px;

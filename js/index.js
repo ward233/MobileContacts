@@ -1,4 +1,6 @@
 $(document).ready(function() {
+
+
     var zip = function(arr1, arr2) {
         var length = arr1.length;
         var addArr = [];
@@ -7,7 +9,12 @@ $(document).ready(function() {
         }
         return addArr;
     };
-
+    var contactList = new Vue({
+        el: '.contact-list',
+        data: {
+            userList: []
+        }
+    });
     var newContactVm = new Vue({
         el: 'body',
         data: {
@@ -59,8 +66,14 @@ $(document).ready(function() {
                 this.userInfo.phoneRing = phoneRing;
                 this.userInfo.phoneShock = phoneShock;
                 var userInfoStr = JSON.stringify(this.userInfo);
-                console.log(userInfoStr);
                 localStorage.setItem(name, userInfoStr);
+                var userList = [];
+                for (var i = 0; i < localStorage.length; i++) {
+                    userList.push(localStorage.key(i));
+                }
+
+                contactList.userList = userList;
+                this.cancleNewContactFunc();
             },
             addPhoneFunc: function() {
                 this.phoneItems.push(this.phoneNum);
@@ -72,6 +85,8 @@ $(document).ready(function() {
             }
         }
     });
+
+
     $('body').css('visibility', 'visible'); // 用来解决文档先渲染后再执行脚本的隐藏元素闪烁问题
     $('.new-contact').click(function(event) {
         var $node = $(event.target);
@@ -89,4 +104,13 @@ $(document).ready(function() {
 
         }
     });
+
+    var userList = [];
+    for (var i = 0; i < localStorage.length; i++) {
+        userList.push(localStorage.key(i));
+    }
+
+    contactList.userList = userList;
+
+
 });

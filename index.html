@@ -14,7 +14,13 @@
             <h1>通讯录</h1>
             <i class="iconfont icon-add" v-on:click = "showContactFunc"></i>
         </header>
-        <section class="contact-lists">
+        <section class="contact-list">
+        <ul>
+            <li v-for = "user in userList">
+                {{user}}
+            </li>
+        </ul>
+
         </section>
         <footer>
             <i class="iconfont icon-cc-head"></i>
