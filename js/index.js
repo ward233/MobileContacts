@@ -1,14 +1,19 @@
 $(document).ready(function() {
     var newContactVm = new Vue({
-        el: '.new-contact',
+        el: 'body',
         data: {
-            newContact: false,
+            showContact: false,
+            showMain: true
         }
     });
     $('body').css('visibility', 'visible'); // 用来解决文档先渲染后再执行脚本的隐藏元素闪烁问题
-    newContactVm.newContact = true;
 
-    $('.icon-add').click(function() {
-        newContactVm.newContact = true;
+    $('main .icon-add').click(function() {
+        newContactVm.showContact = true;
+        newContactVm.showMain = false;
+    });
+    $('.new-contact .cancle').click(function() {
+        newContactVm.showContact = false;
+        newContactVm.showMain = true;
     });
 });

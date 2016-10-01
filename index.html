@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <main>
+    <main v-show = "showMain">
         <header class="header">
             <h1>通讯录</h1>
             <i class="iconfont icon-add"></i>
@@ -24,11 +24,11 @@
 
 
 
-    <section class="new-contact new-contact-anim" v-show = "newContact">
+    <section class="new-contact" v-show = "showContact" transition = "new-contact-anim">
         <header>
-            <span>取消</span>
+            <span class="cancle">取消</span>
+            <span class="save">保存</span>
             <h1>新建联系人</h1>
-            <span>保存</span>
         </header>
         <div class="contact-info">
             <input type="text" placeholder="姓氏">
