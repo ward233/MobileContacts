@@ -1,4 +1,13 @@
 $(document).ready(function() {
+    var zip = function(arr1, arr2) {
+        var length = arr1.length;
+        var addArr = [];
+        for (var i = 0; i < length; i++) {
+            addArr.push([arr1[i], arr2[i]]);
+        }
+        return addArr;
+    };
+
     var newContactVm = new Vue({
         el: 'body',
         data: {
@@ -8,6 +17,7 @@ $(document).ready(function() {
             phoneItems: [],
             emailNum: 0,
             emailItems: [],
+            userInfo: {}
         },
         methods: {
             showContactFunc: function() {
@@ -29,9 +39,28 @@ $(document).ready(function() {
                 $('#chose-phone-shock option').first().attr('selected', 'true');
             },
             saveContactFunc: function() {
-                console.log('hello');
 
-                console.log($('.contact-info input').serialize());
+                var contactType = $('#add-phone .type-chose');
+                var phoneTypeArr = [];
+                $.each(contactType, function(index, el) {
+                    phoneTypeArr.push($(el).val());
+                });
+                var ContactphoneNum = $('#add-phone input');
+                var phoneNumArr = [];
+                $.each(ContactphoneNum, function(index, el) {
+                    phoneNumArr.push($(el).val());
+                });
+                var name = $('.contact-info input').val();
+                var ContactPhoneInfo = zip(phoneTypeArr, phoneNumArr);
+                var phoneRing = $('#chose-phone-ring select').val();
+                var phoneShock = $('#chose-phone-shock select').val();
+                this.userInfo.name = name;
+                this.userInfo.ContactPhoneInfo = ContactPhoneInfo;
+                this.userInfo.phoneRing = phoneRing;
+                this.userInfo.phoneShock = phoneShock;
+                var userInfoStr = JSON.stringify(this.userInfo);
+                console.log(userInfoStr);
+                localStorage.setItem(name, userInfoStr);
             },
             addPhoneFunc: function() {
                 this.phoneItems.push(this.phoneNum);
@@ -60,5 +89,4 @@ $(document).ready(function() {
 
         }
     });
-
 });
