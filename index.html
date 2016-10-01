@@ -8,16 +8,28 @@
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-    <header class="main-header">
-        <h1>通讯录</h1>
-        <i class="iconfont icon-add"></i>
-    </header>
 
-    <section class="contact-lists">
+    <main>
+        <header class="header">
+            <h1>通讯录</h1>
+            <i class="iconfont icon-add"></i>
+        </header>
+        <section class="contact-lists">
+        </section>
+        <footer>
+            <i class="iconfont icon-cc-head"></i>
+        </footer>
+    </main>
 
-    </section>
 
-    <section class="new-contact">
+
+
+    <section class="new-contact new-contact-anim" v-show = "newContact">
+        <header>
+            <span>取消</span>
+            <h1>新建联系人</h1>
+            <span>保存</span>
+        </header>
         <div class="contact-info">
             <input type="text" placeholder="姓氏">
             <div class="divided"></div>
@@ -84,16 +96,16 @@
             <span>震动</span>
             <select class="type-chose">
                 <option value="默认">默认</option>
-                <option value="开场">开场</option>
-                <option value="波浪">波浪</option>
-                <option value="顶峰">顶峰</option>
-                <option value="辐射">辐射</option>
+                <option value="开场">断奏</option>
+                <option value="波浪">交响乐</option>
+                <option value="顶峰">快速</option>
+                <option value="辐射">提醒</option>
             </select>
             <i class="iconfont icon-icon10"></i>
         </div>
     </section>
-    <footer class="main-footer">
-        <i class="iconfont icon-cc-head"></i>
-    </footer>
+    <script src="js/jquery-3.1.1.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/index.js"></script>
 </body>
 </html>

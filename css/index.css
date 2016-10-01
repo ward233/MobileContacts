@@ -1,3 +1,4 @@
+/* 基本样式区 start */
 html,
 input,
 option {
@@ -5,6 +6,8 @@ option {
 }
 
 body {
+    visibility: hidden;
+
     padding: 45px 0;
 }
 
@@ -12,18 +15,27 @@ li {
     list-style: none;
 }
 
-.clearfix:after {
+.iconfont {
+    cursor: pointer;
+}
+
+.clearfix::after {
     clear: both;
 }
-.clearfix:after,
-.clearfix:before {
+.clearfix::after,
+.clearfix::before {
     display: table;
 
     content: "";
 }
+/* 基本样式区 end*/
 
-.main-header {
+
+
+/* 主页样式区  start*/
+main header, .new-contact header {
     position: fixed;
+    z-index: 9999;
     top: 0;
 
     width: 100%;
@@ -37,11 +49,12 @@ li {
     background-color: #f7f7f7;
 }
 
-.main-header h1 {
+main header h1, .new-contact header h1 {
     text-align: center;
+    color: #000;
 }
 
-.main-header .icon-add {
+main header .icon-add {
     position: absolute;
     top: 0;
     right: 20px;
@@ -49,8 +62,9 @@ li {
     font-size: 20px;
 }
 
-.main-footer {
+main footer {
     position: fixed;
+    z-index: 9999;
     bottom: 0;
     left: 0;
 
@@ -64,12 +78,34 @@ li {
     background-color: #f7f7f7;
 }
 
-.main-footer .icon-cc-head {
+main footer .icon-cc-head {
     font-size: 30px;
 
     color: #007aff;
 }
-.contact-info {
+
+/* 主页样式区 end*/
+
+
+/* 新联系人样式区 start */
+.new-contact {
+    transition: all .3s linear;
+    transform: translateY(120%);
+
+    opacity: 0;
+}
+.new-contact-anim {
+    transition: all .3s linear;
+    transform: translateY(0);
+
+    opacity: 1;
+}
+/* 新联系人载入动画区 */
+
+.new-contact header {
+    top: -45px;
+}
+.new-contact .contact-info {
     margin-bottom: 20px;
 }
 .new-contact .contact-info input {
@@ -85,26 +121,26 @@ li {
     border: none;
     outline: none;
 }
-.divided {
+.new-contact .contact-info .divided {
     width: 90%;
     margin: 0 auto;
 
     border-bottom: 2px solid #ddd;
 }
 
+/* 新联系人 个人信息区*/
 
-
-.add-area {
+.new-contact .add-area {
     margin-bottom: 70px;
     padding-left: 20px;
 
     border-bottom: 2px solid #ddd;
 }
 
-.add-area li {
+.new-contact .add-area li {
     border-bottom: 2px solid #ddd;
 }
-.add-area .type {
+.new-contact .add-area .type {
     float: left;
 
     box-sizing: border-box;
@@ -114,7 +150,7 @@ li {
 
     border-right: 1px solid #ddd;
 }
-.icon-remove-phone {
+.new-contact .add-area .type .icon-remove-phone {
     float: left;
 
     font-size: 25px;
@@ -122,8 +158,9 @@ li {
 
     color: #d9534f;
 }
-.add-area .type-chose,
-.chose-area .type-chose {
+.new-contact .add-area .type-chose,
+.new-contact .chose-area .type-chose {
+    /* 这里 是添加电话和选择铃声的共同样式 */
     height: 40px;
     margin: 0 5px;
 
@@ -139,7 +176,7 @@ li {
        -moz-appearance: none; /* Firefox */
     -webkit-appearance: none; /* Safari 和 Chrome */
 }
-.add-area .icon-icon10 {
+.new-contact .add-area .icon-icon10 {
     float: right;
 
     margin-right: 5px;
@@ -148,10 +185,10 @@ li {
 
     color: #ccc;
 }
-.add-area .type-chose option {
+.new-contact .add-area .type-chose option {
     text-align: center;
 }
-.add-area input {
+.new-contact .add-area input {
     float: left;
 
     box-sizing: border-box;
@@ -166,16 +203,16 @@ li {
 }
 
 
-.add-area .add-control {
+.new-contact .add-area .add-control {
     height: 60px;
 }
-.add-area .add-control span {
+.new-contact .add-area .add-control span {
     font-size: 16px;
     line-height: 60px;
 
     color: #007aff;
 }
-.icon-add-phone {
+.new-contact .add-area .icon-add-phone {
     float: left;
 
     margin-right: 10px;
@@ -185,26 +222,36 @@ li {
 
     color: #5cb85c;
 }
+/* 添加电话区 */
 
-.chose-area {
-    border-bottom: 2px solid #ddd;
+.new-contact .chose-area {
     height: 40px;
     padding-left: 55px;
+
+    border-bottom: 2px solid #ddd;
 }
-.chose-area span {
-    color: #007aff;
-    margin-right: 30px;
+.new-contact .chose-area span {
     float: left;
-    line-height: 40px;
+
     width: 70px;
+    margin-right: 30px;
+
+    line-height: 40px;
+
+    color: #007aff;
 }
-.chose-area .type-chose {
-    color: #000;
+.new-contact .chose-area .type-chose {
     font-size: 18px;
+
+    color: #000;
 }
 
 
-.chose-area .icon-icon10 {
+.new-contact .chose-area .icon-icon10 {
     float: right;
+
     line-height: 40px;
 }
+/* 选择铃声样式区 */
+
+/* 新联系人样式区 end */
