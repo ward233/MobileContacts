@@ -12,7 +12,7 @@
     <main v-show = "showMain">
         <header class="header">
             <h1>通讯录</h1>
-            <i class="iconfont icon-add"></i>
+            <i class="iconfont icon-add" v-on:click = "showContactFunc"></i>
         </header>
         <section class="contact-lists">
         </section>
@@ -26,21 +26,22 @@
 
     <section class="new-contact" v-show = "showContact" transition = "new-contact-anim">
         <header>
-            <span class="cancle">取消</span>
-            <span class="save">保存</span>
+            <span class="cancle" v-on:click = "cancleNewContactFunc">取消</span>
+            <span class="save" v-on:click = "saveContactFunc">保存</span>
             <h1>新建联系人</h1>
         </header>
         <div class="contact-info">
-            <input type="text" placeholder="姓氏">
+            <input type="text" placeholder="姓氏" name="firstName">
             <div class="divided"></div>
-            <input type="text" placeholder="名字">
+            <input type="text" placeholder="名字" name="lastName">
             <div class="divided"></div>
-            <input type="text" placeholder="公司">
+            <input type="text" placeholder="公司" name="companyName">
             <div class="divided"></div>
         </div>
         <div class="add-area" id="add-phone">
             <ul>
-                <li class="clearfix">
+                <template v-for = "item in phoneItems">
+                <li class="clearfix" transition="add-anim">
                     <div class="type">
                         <i class="iconfont icon-remove-phone"></i>
                         <select class="type-chose">
@@ -52,17 +53,19 @@
                         </select>
                         <i class="iconfont icon-icon10"></i>
                     </div>
-                    <input type="text" placeholder="电话">
+                    <input type="text" placeholder="电话" name = "phone{{item}}">
                 </li>
+                </template>
             </ul>
             <div class="add-control">
-                <i class="iconfont icon-add-phone"></i>
+                <i class="iconfont icon-add-phone" v-on:click = "addPhoneFunc"></i>
                 <span>添加电话</span>
             </div>
         </div>
         <div class="add-area" id="add-email">
             <ul>
-                <li class="clearfix">
+                <template v-for = "item in emailItems">
+                <li class="clearfix" transition="add-anim">
                     <div class="type">
                         <i class="iconfont icon-remove-phone"></i>
                         <select class="type-chose">
@@ -72,12 +75,12 @@
                         </select>
                         <i class="iconfont icon-icon10"></i>
                     </div>
-                    <input type="text" placeholder="电子邮件">
+                    <input type="text" placeholder="电子邮件" name = "email{{item}}">
                 </li>
-
+                </template>
             </ul>
             <div class="add-control">
-                <i class="iconfont icon-add-phone"></i>
+                <i class="iconfont icon-add-phone" v-on:click = "addEmailFunc"></i>
                 <span>添加电子邮件</span>
             </div>
         </div>
