@@ -6,6 +6,7 @@ option {
 }
 
 body {
+    overflow-x: hidden;
     visibility: hidden;
 
     padding: 45px 0;
@@ -94,15 +95,16 @@ main footer .icon-cc-head {
 
 /* 新联系人载入动画区 */
 .new-contact-anim-transition {
+    position: relative;
+    right: 0;
     transition: all 0.3s linear;
-
     opacity: 1;
 }
 
 
 .new-contact-anim-enter,
 .new-contact-anim-leave {
-
+    right: -100%;
     opacity: 0;
 }
 .new-contact .save {
