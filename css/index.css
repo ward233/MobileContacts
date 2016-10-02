@@ -6,9 +6,11 @@ option {
 }
 
 body {
+    position: relative;
+
     visibility: hidden;
     overflow-x: hidden;
-    position: relative;
+
     padding: 40px 0;
 }
 
@@ -34,6 +36,7 @@ li {
 
 main {
     position: absolute;
+
     width: 100%;
 }
 /* 主页样式区  start*/
@@ -80,9 +83,10 @@ main li {
 main li:nth-child(even) {
     background-color: #eee;
 }
-main li:hover{
-    background-color: #ddd;
+main li:hover {
     cursor: pointer;
+
+    background-color: #ddd;
 }
 main footer {
     position: fixed;
@@ -112,19 +116,17 @@ main footer .icon-cc-head {
 /* 新联系人样式区 start */
 
 
-.new-contact-anim-transition {
+.right-slide-anim-transition {
     position: relative;
     right: 0;
 
-    transition: all 0.3s linear;
-
+    transition: all .3s linear;
 }
 
 
-.new-contact-anim-enter,
-.new-contact-anim-leave {
+.right-slide-anim-enter,
+.right-slide-anim-leave {
     right: -100%;
-
 }
 
 /* 新联系人载入动画区 */
@@ -308,3 +310,70 @@ main footer .icon-cc-head {
 /* 选择铃声样式区 */
 
 /* 新联系人样式区 end */
+.user-contact-info header{
+    background: #f8f8f8;
+
+}
+.user-contact-info .top {
+    position: fixed;
+    top: 0;
+
+    height: 40px;
+
+    font-size: 20px;
+    line-height: 40px;
+
+    color: #007aff;
+    width: 100%;
+    padding: 0 15px 0 0;
+    background: #f8f8f8;
+    box-sizing: border-box;
+}
+
+.user-contact-info .top .icon-icon10 {
+    float: left;
+    font-size: 25px;
+    transform: rotate(180deg) translateY(-1px);
+    margin-right: 2px;
+}
+.user-contact-info .top .edit {
+    float: right;
+}
+.user-contact-info .user-name {
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    font-size: 48px;
+}
+
+.user-contact-info .phone-list li {
+    border-bottom: 2px solid #eee;
+    height: 40px;
+    line-height: 20px;
+    padding: 5px 10px;
+    font-size: 14px;
+    margin-top: 10px;
+}
+.user-contact-info .phone-list li p:nth-child(2) {
+    color: #007aff;
+    font-size: 16px;
+}
+.user-contact-info footer {
+    margin-top: 100px;
+    text-align: center;
+    line-height: 50px;
+}
+.user-contact-info .send-message{
+    background: #5cb85c;
+    margin: 10px 0;
+    font-size: 24px;
+    border-radius: 14px;
+    color: #fff;
+}
+.user-contact-info .prevent-call{
+    background: #d9534f;
+    margin: 10px 0;
+    font-size: 24px;
+    color: #fff;
+    border-radius: 14px;
+}

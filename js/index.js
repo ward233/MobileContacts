@@ -15,6 +15,16 @@ $(document).ready(function() {
             userList: []
         }
     });
+    var contactInfo = new Vue({
+        el: '.user-contact-info',
+        data: {
+            showContactInfo: false,
+            userInfo: {},
+            userName: "",
+            phoneList: [],
+
+        }
+    });
     var newContactVm = new Vue({
         el: 'body',
         data: {
@@ -105,6 +115,33 @@ $(document).ready(function() {
         }
     });
 
+    $('.contact-list').click(function(event) {
+        contactInfo.userInfo = $.parseJSON(localStorage[$.trim($(event.target).text())]);
+        contactInfo.userName = contactInfo.userInfo.name;
+        contactInfo.phoneList = contactInfo.userInfo.ContactPhoneInfo;
+        contactInfo.showContactInfo = true;
+        newContactVm.showMain = false;
+    });
+    $('.user-contact-info .go-back').click(function() {
+        contactInfo.showContactInfo = false;
+        newContactVm.showMain = true;
+    });
+    $('.user-contact-info .edit').click(function() {
+        contactInfo.showContactInfo = false;
+        newContactVm.showContact = true;
+        $('.contact-info input').val(contactInfo.userName);
+        for (var i = 0; i < contactInfo.phoneList.length; i++) {
+            newContactVm.phoneItems.push(i);
+        }
+        var contactType = $('#add-phone .type-chose');
+        var ContactphoneNum = $('#add-phone input');
+        for (i = 0; i < contactInfo.phoneList.length; i++) {
+            console.log(ContactphoneNum);
+        }
+
+
+
+    });
     var userList = [];
     for (var i = 0; i < localStorage.length; i++) {
         userList.push(localStorage.key(i));

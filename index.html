@@ -30,7 +30,7 @@
 
 
 
-    <section class="new-contact" v-show = "showContact" transition = "new-contact-anim">
+    <section class="new-contact" v-show = "showContact" transition = "right-slide-anim">
         <header>
             <span class="cancle" v-on:click = "cancleNewContactFunc">取消</span>
             <span class="save" v-on:click = "saveContactFunc">保存</span>
@@ -110,6 +110,33 @@
             </select>
             <i class="iconfont icon-icon10"></i>
         </div>
+    </section>
+
+    <section class="user-contact-info" v-show = "showContactInfo"  transition = "right-slide-anim">
+        <header>
+            <div class="top clearfix">
+                <i class="iconfont icon-icon10"></i>
+                <span class="go-back">通讯录</span>
+                <span class="edit">编辑</span>
+            </div>
+            <div class="user-name">{{userName}}</div>
+        </header>
+        <div class="phone-list">
+            <ul>
+                <li v-for = "item in phoneList">
+                    <p>{{item[0]}}</p>
+                    <p>{{item[1]}}</p>
+                </li>
+            </ul>
+        </div>
+        <footer>
+            <div class="send-message">
+                发送信息
+            </div>
+            <div class="prevent-call">
+                阻止来电
+            </div>
+        </footer>
     </section>
     <script src="js/jquery-3.1.1.js"></script>
     <script src="js/vue.js"></script>
