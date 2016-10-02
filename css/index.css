@@ -41,7 +41,7 @@ main {
 }
 /* 主页样式区  start*/
 main header,
-.new-contact header {
+#new-contact header {
     position: fixed;
     z-index: 9999;
     top: 0;
@@ -58,7 +58,7 @@ main header,
 }
 
 main header h1,
-.new-contact header h1 {
+#new-contact header h1 {
     text-align: center;
 
     color: #000;
@@ -132,20 +132,20 @@ main footer .icon-cc-head {
 /* 新联系人载入动画区 */
 
 
-.new-contact .save {
+#new-contact .save {
     float: right;
 
     margin-right: 10px;
 }
-.new-contact .cancle {
+#new-contact .cancle {
     float: left;
 
     margin-left: 10px;
 }
-.new-contact .contact-info {
+#new-contact .contact-info {
     margin-bottom: 20px;
 }
-.new-contact .contact-info input {
+#new-contact .contact-info input {
     display: block;
 
     box-sizing: border-box;
@@ -158,7 +158,7 @@ main footer .icon-cc-head {
     border: none;
     outline: none;
 }
-.new-contact .contact-info .divided {
+#new-contact .contact-info .divided {
     width: 90%;
     margin: 0 auto;
 
@@ -185,17 +185,17 @@ main footer .icon-cc-head {
     opacity: 0;
 }
 
-.new-contact .add-area {
+#new-contact .add-area {
     margin-bottom: 70px;
     padding-left: 20px;
 
     border-bottom: 2px solid #ddd;
 }
 
-.new-contact .add-area li {
+#new-contact .add-area li {
     border-bottom: 2px solid #ddd;
 }
-.new-contact .add-area .type {
+#new-contact .add-area .type {
     float: left;
 
     box-sizing: border-box;
@@ -205,7 +205,7 @@ main footer .icon-cc-head {
 
     border-right: 1px solid #ddd;
 }
-.new-contact .add-area .type .icon-remove-phone {
+#new-contact .add-area .type .icon-remove-phone {
     float: left;
 
     font-size: 25px;
@@ -213,8 +213,8 @@ main footer .icon-cc-head {
 
     color: #d9534f;
 }
-.new-contact .add-area .type-chose,
-.new-contact .chose-area .type-chose {
+#new-contact .add-area .type-chose,
+#new-contact .chose-area .type-chose {
     /* 这里 是添加电话和选择铃声的共同样式 */
     height: 40px;
     margin: 0 5px;
@@ -231,7 +231,7 @@ main footer .icon-cc-head {
        -moz-appearance: none; /* Firefox */
     -webkit-appearance: none; /* Safari 和 Chrome */
 }
-.new-contact .add-area .icon-icon10 {
+#new-contact .add-area .icon-icon10 {
     float: right;
 
     margin-right: 5px;
@@ -240,10 +240,10 @@ main footer .icon-cc-head {
 
     color: #ccc;
 }
-.new-contact .add-area .type-chose option {
+#new-contact .add-area .type-chose option {
     text-align: center;
 }
-.new-contact .add-area input {
+#new-contact .add-area input {
     float: left;
 
     box-sizing: border-box;
@@ -258,16 +258,16 @@ main footer .icon-cc-head {
 }
 
 
-.new-contact .add-area .add-control {
+#new-contact .add-area .add-control {
     height: 60px;
 }
-.new-contact .add-area .add-control span {
+#new-contact .add-area .add-control span {
     font-size: 16px;
     line-height: 60px;
 
     color: #007aff;
 }
-.new-contact .add-area .icon-add-phone {
+#new-contact .add-area .icon-add-phone {
     float: left;
 
     margin-right: 10px;
@@ -279,13 +279,13 @@ main footer .icon-cc-head {
 }
 /* 添加电话区 */
 
-.new-contact .chose-area {
+#new-contact .chose-area {
     height: 40px;
     padding-left: 55px;
 
     border-bottom: 2px solid #ddd;
 }
-.new-contact .chose-area span {
+#new-contact .chose-area span {
     float: left;
 
     width: 70px;
@@ -295,14 +295,14 @@ main footer .icon-cc-head {
 
     color: #007aff;
 }
-.new-contact .chose-area .type-chose {
+#new-contact .chose-area .type-chose {
     font-size: 18px;
 
     color: #000;
 }
 
 
-.new-contact .chose-area .icon-icon10 {
+#new-contact .chose-area .icon-icon10 {
     float: right;
 
     line-height: 40px;
@@ -310,11 +310,11 @@ main footer .icon-cc-head {
 /* 选择铃声样式区 */
 
 /* 新联系人样式区 end */
-.user-contact-info header{
+#user-contact-info header{
     background: #f8f8f8;
 
 }
-.user-contact-info .top {
+#user-contact-info .top {
     position: fixed;
     top: 0;
 
@@ -330,23 +330,23 @@ main footer .icon-cc-head {
     box-sizing: border-box;
 }
 
-.user-contact-info .top .icon-icon10 {
+#user-contact-info .top .icon-icon10 {
     float: left;
     font-size: 25px;
     transform: rotate(180deg) translateY(-1px);
     margin-right: 2px;
 }
-.user-contact-info .top .edit {
+#user-contact-info .top .edit {
     float: right;
 }
-.user-contact-info .user-name {
+#user-contact-info .user-name {
     height: 80px;
     line-height: 80px;
     text-align: center;
     font-size: 48px;
 }
 
-.user-contact-info .phone-list li {
+#user-contact-info .phone-list li {
     border-bottom: 2px solid #eee;
     height: 40px;
     line-height: 20px;
@@ -354,23 +354,23 @@ main footer .icon-cc-head {
     font-size: 14px;
     margin-top: 10px;
 }
-.user-contact-info .phone-list li p:nth-child(2) {
+#user-contact-info .phone-list li p:nth-child(2) {
     color: #007aff;
     font-size: 16px;
 }
-.user-contact-info footer {
+#user-contact-info footer {
     margin-top: 100px;
     text-align: center;
     line-height: 50px;
 }
-.user-contact-info .send-message{
+#user-contact-info .send-message{
     background: #5cb85c;
     margin: 10px 0;
     font-size: 24px;
     border-radius: 14px;
     color: #fff;
 }
-.user-contact-info .prevent-call{
+#user-contact-info .prevent-call{
     background: #d9534f;
     margin: 10px 0;
     font-size: 24px;

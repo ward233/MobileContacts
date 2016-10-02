@@ -1,153 +1,98 @@
 $(document).ready(function() {
-
-
-    var zip = function(arr1, arr2) {
-        var length = arr1.length;
-        var addArr = [];
-        for (var i = 0; i < length; i++) {
-            addArr.push([arr1[i], arr2[i]]);
+    var getUserList = function() {
+        var userList = [];
+        for (var i = 0; i < localStorage.length; i++) {
+            userList.push(localStorage.key(i));
         }
-        return addArr;
+        return userList;
     };
-    var contactList = new Vue({
-        el: '.contact-list',
-        data: {
-            userList: []
-        }
-    });
-    var contactInfo = new Vue({
-        el: '.user-contact-info',
-        data: {
-            showContactInfo: false,
-            userInfo: {},
-            userName: "",
-            phoneList: [],
 
+    var mainVm = new Vue({
+        el: '#main',
+        data: {
+            show: true,
+            userList: getUserList()
+        },
+        methods: {
+            showUserContactInfo: function(event) {
+                this.show = false;
+                userContactInfoVm.show = true;
+                userContactInfoVm.userInfo = $.parseJSON(localStorage[$.trim($(event.target).text())]);
+            },
+            showNewContact: function() {
+                this.show = false;
+                newContactVm.show = true;
+            }
         }
+
     });
     var newContactVm = new Vue({
-        el: 'body',
+        el: '#new-contact',
         data: {
-            showContact: false,
-            showMain: true,
-            phoneNum: 0,
-            phoneItems: [],
-            emailNum: 0,
-            emailItems: [],
+            show: false,
+            userName: "",
+            dataNum: 0,
+            phoneList: [],
+            phoneRing: "默认",
+            phoneShock: "默认",
+            userInfo: {}
+
+        },
+        methods: {
+            addPhone: function() {
+                this.phoneList.push({
+                    dataNum: this.dataNum,
+                    phoneType: "住宅",
+                    phoneNum: ""
+                });
+                this.dataNum += 1;
+            },
+            removePhone: function(event) {
+                var dataNum = $(event.target).parent().parent().attr('data-num');
+                console.log(this.phoneList);
+                this.phoneList = this.phoneList.filter(function(item) {
+                    return item.dataNum !== parseInt(dataNum);
+                });
+            },
+            cancle: function() {
+                mainVm.show = true;
+                this.show = false;
+                this.userName = "";
+                this.dataNum = 0;
+                this.phoneList = [];
+                this.phoneRing = "默认";
+                this.phoneShock = "默认";
+
+            },
+            save: function() {
+                this.userInfo.userName = this.userName;
+                this.userInfo.phoneList = this.phoneList;
+                this.userInfo.phoneShock = this.phoneShock;
+                this.userInfo.phoneRing = this.phoneRing;
+                var userInfoStr = JSON.stringify(this.userInfo);
+                localStorage.setItem(this.userName, userInfoStr);
+                this.cancle();
+
+                mainVm.userList = getUserList();
+            }
+        }
+    });
+    var userContactInfoVm = new Vue({
+        el: '#user-contact-info',
+        data: {
+            show: false,
             userInfo: {}
         },
         methods: {
-            showContactFunc: function() {
-                this.showContact = true;
-                this.showMain = false;
-                $('#chose-phone-ring option').first().removeAttr('selected');
-                $('#chose-phone-shock option').first().removeAttr('selected');
-            },
-            cancleNewContactFunc: function() {
-                this.showContact = false;
-                this.showMain = true;
-                this.phoneItems = [];
-                this.emailItems = [];
-                this.phoneNum = 0;
-                this.emailNum = 0;
-                $('.contact-info input').val('');
-
-                $('#chose-phone-ring option').first().attr('selected', 'true');
-                $('#chose-phone-shock option').first().attr('selected', 'true');
-            },
-            saveContactFunc: function() {
-
-                var contactType = $('#add-phone .type-chose');
-                var phoneTypeArr = [];
-                $.each(contactType, function(index, el) {
-                    phoneTypeArr.push($(el).val());
-                });
-                var ContactphoneNum = $('#add-phone input');
-                var phoneNumArr = [];
-                $.each(ContactphoneNum, function(index, el) {
-                    phoneNumArr.push($(el).val());
-                });
-                var name = $('.contact-info input').val();
-                var ContactPhoneInfo = zip(phoneTypeArr, phoneNumArr);
-                var phoneRing = $('#chose-phone-ring select').val();
-                var phoneShock = $('#chose-phone-shock select').val();
-                this.userInfo.name = name;
-                this.userInfo.ContactPhoneInfo = ContactPhoneInfo;
-                this.userInfo.phoneRing = phoneRing;
-                this.userInfo.phoneShock = phoneShock;
-                var userInfoStr = JSON.stringify(this.userInfo);
-                localStorage.setItem(name, userInfoStr);
-                var userList = [];
-                for (var i = 0; i < localStorage.length; i++) {
-                    userList.push(localStorage.key(i));
-                }
-
-                contactList.userList = userList;
-                this.cancleNewContactFunc();
-            },
-            addPhoneFunc: function() {
-                this.phoneItems.push(this.phoneNum);
-                this.phoneNum += 1;
-            },
-            addEmailFunc: function() {
-                this.emailItems.push(this.emailNum);
-                this.emailNum += 1;
+            goBack: function() {
+                this.show = false;
+                mainVm.show = true;
             }
         }
     });
-
 
     $('body').css('visibility', 'visible'); // 用来解决文档先渲染后再执行脚本的隐藏元素闪烁问题
-    $('.new-contact').click(function(event) {
-        var $node = $(event.target);
-        if ($node.hasClass('icon-remove-phone')) {
-            var removeName = $node.parent().next('input').attr('name');
-            var removeNameArr = removeName.split('');
-            var removeType = removeNameArr.splice(0, 5).join('');
-            var removeNum = parseInt(removeNameArr.join(''));
-            if (removeType === 'phone') {
-                newContactVm.phoneItems.$remove(removeNum);
-            } else {
-                newContactVm.emailItems.$remove(removeNum);
 
-            }
-
-        }
-    });
-
-    $('.contact-list').click(function(event) {
-        contactInfo.userInfo = $.parseJSON(localStorage[$.trim($(event.target).text())]);
-        contactInfo.userName = contactInfo.userInfo.name;
-        contactInfo.phoneList = contactInfo.userInfo.ContactPhoneInfo;
-        contactInfo.showContactInfo = true;
-        newContactVm.showMain = false;
-    });
-    $('.user-contact-info .go-back').click(function() {
-        contactInfo.showContactInfo = false;
-        newContactVm.showMain = true;
-    });
-    $('.user-contact-info .edit').click(function() {
-        contactInfo.showContactInfo = false;
-        newContactVm.showContact = true;
-        $('.contact-info input').val(contactInfo.userName);
-        for (var i = 0; i < contactInfo.phoneList.length; i++) {
-            newContactVm.phoneItems.push(i);
-        }
-        var contactType = $('#add-phone .type-chose');
-        var ContactphoneNum = $('#add-phone input');
-        for (i = 0; i < contactInfo.phoneList.length; i++) {
-            console.log(ContactphoneNum);
-        }
-
-
-
-    });
-    var userList = [];
-    for (var i = 0; i < localStorage.length; i++) {
-        userList.push(localStorage.key(i));
-    }
-
-    contactList.userList = userList;
 
 
 });

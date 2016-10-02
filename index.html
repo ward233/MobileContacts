@@ -9,15 +9,15 @@
 </head>
 <body>
 
-    <main v-show = "showMain">
+    <main v-show = "show" id="main">
         <header class="header">
             <h1>通讯录</h1>
-            <i class="iconfont icon-add" v-on:click = "showContactFunc"></i>
+            <i class="iconfont icon-add" v-on:click = "showNewContact"></i>
         </header>
         <section class="contact-list">
         <ul>
-            <li v-for = "user in userList">
-                {{user}}
+            <li v-for = "item in userList" v-on:click = "showUserContactInfo">
+                {{item}}
             </li>
         </ul>
 
@@ -30,25 +30,25 @@
 
 
 
-    <section class="new-contact" v-show = "showContact" transition = "right-slide-anim">
+    <section id="new-contact" v-show = "show"  transition = "right-slide-anim">
         <header>
-            <span class="cancle" v-on:click = "cancleNewContactFunc">取消</span>
-            <span class="save" v-on:click = "saveContactFunc">保存</span>
+            <span class="cancle" v-on:click = "cancle">取消</span>
+            <span class="save" v-on:click = "save">保存</span>
             <h1>新建联系人</h1>
         </header>
         <div class="contact-info">
-            <input type="text" placeholder="姓名" name="userName">
+            <input type="text" placeholder="姓名" v-model = "userName">
             <div class="divided"></div>
 <!--             <input type="text" placeholder="公司" name="companyName">
             <div class="divided"></div> -->
         </div>
         <div class="add-area" id="add-phone">
             <ul>
-                <template v-for = "item in phoneItems">
-                <li class="clearfix" transition="add-anim">
+                <template v-for = "item in phoneList">
+                <li class="clearfix" transition="add-anim" v-bind:data-num = "item.dataNum">
                     <div class="type">
-                        <i class="iconfont icon-remove-phone"></i>
-                        <select class="type-chose">
+                        <i class="iconfont icon-remove-phone" v-on:click = "removePhone"></i>
+                        <select class="type-chose" v-model = "item.phoneType">
                             <option value="住宅">住宅</option>
                             <option value="工作">工作</option>
                             <option value="手机">手机</option>
@@ -57,78 +57,56 @@
                         </select>
                         <i class="iconfont icon-icon10"></i>
                     </div>
-                    <input type="text" placeholder="电话" name = "phone{{item}}">
+                    <input type="text" placeholder="电话" v-model = "item.phoneNum">
                 </li>
                 </template>
             </ul>
             <div class="add-control">
-                <i class="iconfont icon-add-phone" v-on:click = "addPhoneFunc"></i>
+                <i class="iconfont icon-add-phone" v-on:click = "addPhone"></i>
                 <span>添加电话</span>
             </div>
         </div>
-<!--         <div class="add-area" id="add-email">
-            <ul>
-                <template v-for = "item in emailItems">
-                <li class="clearfix" transition="add-anim">
-                    <div class="type">
-                        <i class="iconfont icon-remove-phone"></i>
-                        <select class="type-chose">
-                            <option value="住宅">住宅</option>
-                            <option value="主要">主要</option>
-                            <option value="其他">其他</option>
-                        </select>
-                        <i class="iconfont icon-icon10"></i>
-                    </div>
-                    <input type="text" placeholder="电子邮件" name = "email{{item}}">
-                </li>
-                </template>
-            </ul>
-            <div class="add-control">
-                <i class="iconfont icon-add-phone" v-on:click = "addEmailFunc"></i>
-                <span>添加电子邮件</span>
-            </div>
-        </div> -->
+
         <div class="chose-area" id="chose-phone-ring">
             <span>电话铃声</span>
-            <select class="type-chose">
-                <option value="默认">默认</option>
-                <option value="开场">开场</option>
-                <option value="波浪">波浪</option>
-                <option value="顶峰">顶峰</option>
-                <option value="辐射">辐射</option>
+            <select class="type-chose" v-model = "phoneRing">
+                <option>默认</option>
+                <option >开场</option>
+                <option>波浪</option>
+                <option>顶峰</option>
+                <option>辐射</option>
             </select>
             <i class="iconfont icon-icon10"></i>
         </div>
         <div class="chose-area" id="chose-phone-shock">
             <span>震动</span>
-            <select class="type-chose">
-                <option value="默认">默认</option>
-                <option value="断奏">断奏</option>
-                <option value="交响乐">交响乐</option>
-                <option value="快速">快速</option>
-                <option value="提醒">提醒</option>
+            <select class="type-chose" v-model = "phoneShock">
+                <option>默认</option>
+                <option>断奏</option>
+                <option>交响乐</option>
+                <option>快速</option>
+                <option>提醒</option>
             </select>
             <i class="iconfont icon-icon10"></i>
         </div>
     </section>
 
-    <section class="user-contact-info" v-show = "showContactInfo"  transition = "right-slide-anim">
+    <section id="user-contact-info" v-show = "show" transition = "right-slide-anim">
         <header>
             <div class="top clearfix">
                 <i class="iconfont icon-icon10"></i>
-                <span class="go-back">通讯录</span>
+                <span class="go-back" v-on:click = "goBack">通讯录</span>
                 <span class="edit">编辑</span>
             </div>
-            <div class="user-name">{{userName}}</div>
+            <div class="user-name">{{userInfo.userName}}</div>
         </header>
-        <div class="phone-list">
-            <ul>
-                <li v-for = "item in phoneList">
-                    <p>{{item[0]}}</p>
-                    <p>{{item[1]}}</p>
+            <ul class="phone-list">
+                <li v-for = "item in userInfo.phoneList
+">
+                    <p>{{item.phoneType}}</p>
+                    <p>{{item.phoneNum}}</p>
                 </li>
             </ul>
-        </div>
         <footer>
             <div class="send-message">
                 发送信息
