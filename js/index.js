@@ -18,6 +18,7 @@ $(document).ready(function() {
                 this.show = false;
                 userContactInfoVm.show = true;
                 userContactInfoVm.userInfo = $.parseJSON(localStorage[$.trim($(event.target).text())]);
+                console.log(userContactInfoVm.userInfo);
             },
             showNewContact: function() {
                 this.show = false;
@@ -87,6 +88,16 @@ $(document).ready(function() {
             goBack: function() {
                 this.show = false;
                 mainVm.show = true;
+            },
+            edit: function() {
+                this.show = false;
+                newContactVm.show = true;
+                $('#new-contact h1').remove();
+                newContactVm.userName = userContactInfoVm.userInfo.userName;
+                newContactVm.phoneList = userContactInfoVm.userInfo.phoneList;
+                newContactVm.phoneRing = userContactInfoVm.userInfo.phoneRing;
+                newContactVm.phoneShock = userContactInfoVm.userInfo.phoneShock;
+
             }
         }
     });
