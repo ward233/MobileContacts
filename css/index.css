@@ -117,16 +117,18 @@ main footer .icon-cc-head {
 
 
 .right-slide-anim-transition {
-    position: relative;
-    right: 0;
+    // position: relative;
+    // right: 0;
 
+    opacity: 1;
     transition: all .3s linear;
 }
 
 
 .right-slide-anim-enter,
 .right-slide-anim-leave {
-    right: -100%;
+    opacity: 0;
+    // right: -100%;
 }
 
 /* 新联系人载入动画区 */
