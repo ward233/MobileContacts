@@ -56,8 +56,8 @@ $(document).ready(function() {
                 });
             },
             cancle: function() {
-                mainVm.show = true;
                 this.show = false;
+                mainVm.show = true;
                 this.userName = "";
                 this.dataNum = 0;
                 this.phoneList = [];

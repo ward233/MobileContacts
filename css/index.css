@@ -11,7 +11,7 @@ body {
     visibility: hidden;
     overflow-x: hidden;
 
-    padding: 40px 0;
+    padding: 60px 0;
 }
 
 li {
@@ -20,6 +20,10 @@ li {
 
 .iconfont {
     cursor: pointer;
+
+            tap-highlight-color: rgba(0, 0, 0, 0);
+       -moz-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .clearfix::after {
@@ -47,10 +51,10 @@ main header,
     top: 0;
 
     width: 100%;
-    height: 40px;
+    height: 60px;
 
-    font-size: 20px;
-    line-height: 40px;
+    font-size: 28px;
+    line-height: 60px;
 
     color: #007aff;
     border-bottom: 1px solid #eee;
@@ -69,16 +73,16 @@ main header .icon-add {
     top: 0;
     right: 20px;
 
-    font-size: 20px;
+    font-size: 30px;
 }
 main li {
     box-sizing: border-box;
     width: 100%;
-    height: 35px;
+    height: 50px;
     padding-left: 10px;
 
-    font-size: 16px;
-    line-height: 35px;
+    font-size: 24px;
+    line-height: 50px;
 }
 main li:nth-child(even) {
     background-color: #eee;
@@ -117,11 +121,11 @@ main footer .icon-cc-head {
 
 
 .right-slide-anim-transition {
+    transition: all .3s linear;
     // position: relative;
     // right: 0;
 
     opacity: 1;
-    transition: all .3s linear;
 }
 
 
@@ -228,6 +232,7 @@ main footer .icon-cc-head {
     color: #007aff;
     border: none;
     outline: none;
+    background-color: #fff;
 
             appearance: none;
        -moz-appearance: none; /* Firefox */
@@ -312,70 +317,75 @@ main footer .icon-cc-head {
 /* 选择铃声样式区 */
 
 /* 新联系人样式区 end */
-#user-contact-info header{
+#user-contact-info header {
     background: #f8f8f8;
-
 }
 #user-contact-info .top {
     position: fixed;
     top: 0;
 
-    height: 40px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 60px;
+    padding: 0 15px 0 15px;
 
     font-size: 20px;
-    line-height: 40px;
+    line-height: 60px;
 
     color: #007aff;
-    width: 100%;
-    padding: 0 15px 0 0;
     background: #f8f8f8;
-    box-sizing: border-box;
 }
 
-#user-contact-info .top .icon-icon10 {
-    float: left;
-    font-size: 25px;
-    transform: rotate(180deg) translateY(-1px);
-    margin-right: 2px;
-}
+
 #user-contact-info .top .edit {
     float: right;
 }
 #user-contact-info .user-name {
     height: 80px;
-    line-height: 80px;
-    text-align: center;
+
     font-size: 48px;
+    line-height: 80px;
+
+    text-align: center;
 }
 
 #user-contact-info .phone-list li {
-    border-bottom: 2px solid #eee;
     height: 40px;
-    line-height: 20px;
-    padding: 5px 10px;
-    font-size: 14px;
     margin-top: 10px;
+    padding: 5px 10px;
+
+    font-size: 14px;
+    line-height: 20px;
+
+    border-bottom: 2px solid #eee;
 }
 #user-contact-info .phone-list li p:nth-child(2) {
-    color: #007aff;
     font-size: 16px;
+
+    color: #007aff;
 }
 #user-contact-info footer {
     margin-top: 100px;
-    text-align: center;
+
     line-height: 50px;
+
+    text-align: center;
 }
-#user-contact-info .send-message{
+#user-contact-info .send-message {
+    margin: 10px 0;
+
+    font-size: 24px;
+
+    color: #fff;
+    border-radius: 14px;
     background: #5cb85c;
-    margin: 10px 0;
-    font-size: 24px;
-    border-radius: 14px;
-    color: #fff;
 }
-#user-contact-info .prevent-call{
-    background: #d9534f;
+#user-contact-info .prevent-call {
     margin: 10px 0;
+
     font-size: 24px;
+
     color: #fff;
     border-radius: 14px;
+    background: #d9534f;
 }

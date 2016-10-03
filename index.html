@@ -63,7 +63,7 @@
             </ul>
             <div class="add-control">
                 <i class="iconfont icon-add-phone" v-on:click = "addPhone"></i>
-                <span>添加电话</span>
+                <span v-on:click = "addPhone">添加电话</span>
             </div>
         </div>
 
@@ -94,7 +94,7 @@
     <section id="user-contact-info" v-show = "show" transition = "right-slide-anim">
         <header>
             <div class="top clearfix">
-                <i class="iconfont icon-icon10"></i>
+
                 <span class="go-back" v-on:click = "goBack">通讯录</span>
                 <span class="edit" v-on:click = "edit">编辑</span>
             </div>
