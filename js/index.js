@@ -40,6 +40,14 @@ $(document).ready(function() {
 
         },
         methods: {
+            initInfo: function() {
+                this.userName = "";
+                this.dataNum = 0;
+                this.phoneList = [];
+                this.phoneRing = "默认";
+                this.phoneShock = "默认";
+                this.userInfo = {};
+            },
             addPhone: function() {
                 this.phoneList.push({
                     dataNum: this.dataNum,
@@ -58,11 +66,7 @@ $(document).ready(function() {
             cancle: function() {
                 this.show = false;
                 mainVm.show = true;
-                this.userName = "";
-                this.dataNum = 0;
-                this.phoneList = [];
-                this.phoneRing = "默认";
-                this.phoneShock = "默认";
+                this.initInfo();
 
             },
             save: function() {
@@ -72,8 +76,9 @@ $(document).ready(function() {
                 this.userInfo.phoneRing = this.phoneRing;
                 var userInfoStr = JSON.stringify(this.userInfo);
                 localStorage.setItem(this.userName, userInfoStr);
-                this.cancle();
-
+                this.initInfo();
+                this.show = false;
+                mainVm.show = true;
                 mainVm.userList = getUserList();
             }
         }
