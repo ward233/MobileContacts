@@ -83,17 +83,23 @@ $(document).ready(function() {
                 });
             },
             cancle: function() {
-                this.show = false;
-                mainVm.show = true;
-                this.initInfo();
+                if (confirm('确定不要保存吗？')) {
+                    this.show = false;
+                    mainVm.show = true;
+                    this.initInfo();
+                }
 
             },
             save: function() {
-                userLocalInfo.setParseItem(this.userInfo.userName, this.userInfo);
-                this.initInfo();
-                this.show = false;
-                mainVm.show = true;
-                mainVm.userList = userLocalInfo.getUserList();
+                if (this.userInfo.userName.length === 0 || this.userInfo.userName.indexOf(" ") !== -1) {
+                    alert("名字不可为空！");
+                } else {
+                    userLocalInfo.setParseItem(this.userInfo.userName, this.userInfo);
+                    this.initInfo();
+                    this.show = false;
+                    mainVm.show = true;
+                    mainVm.userList = userLocalInfo.getUserList();
+                }
             }
         },
         ready: function() {
@@ -122,10 +128,13 @@ $(document).ready(function() {
 
             },
             deleteCall: function() {
-                userLocalInfo.removeItem(userContactInfoVm.userInfo.userName);
-                this.show = false;
-                mainVm.show = true;
-                mainVm.userList = userLocalInfo.getUserList();
+
+                if (confirm("确定要删除联系人吗?")) {
+                    userLocalInfo.removeItem(userContactInfoVm.userInfo.userName);
+                    this.show = false;
+                    mainVm.show = true;
+                    mainVm.userList = userLocalInfo.getUserList();
+                }
             }
         },
         ready: function() {
