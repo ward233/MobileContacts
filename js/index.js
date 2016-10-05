@@ -16,6 +16,9 @@ $(document).ready(function() {
     LocalStorage.prototype.getParseItem = function(itemName) {
         return $.parseJSON(localStorage[itemName]);
     };
+    LocalStorage.prototype.removeItem = function(itemName) {
+        localStorage.removeItem(itemName);
+    };
 
     var userLocalInfo = new LocalStorage();
 
@@ -117,6 +120,12 @@ $(document).ready(function() {
                 newContactVm.userInfo.phoneRing = userContactInfoVm.userInfo.phoneRing;
                 newContactVm.userInfo.phoneShock = userContactInfoVm.userInfo.phoneShock;
 
+            },
+            deleteCall: function() {
+                userLocalInfo.removeItem(userContactInfoVm.userInfo.userName);
+                this.show = false;
+                mainVm.show = true;
+                mainVm.userList = userLocalInfo.getUserList();
             }
         },
         ready: function() {

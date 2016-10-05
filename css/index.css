@@ -37,13 +37,13 @@ li {
 }
 /* 基本样式区 end*/
 
+/* 主页样式区  start*/
 
 main {
     position: absolute;
 
     width: 100%;
 }
-/* 主页样式区  start*/
 main header,
 #new-contact header {
     position: fixed;
@@ -329,13 +329,15 @@ main footer .icon-cc-head {
     height: 60px;
     padding: 0 15px 0 15px;
 
-    font-size: 20px;
+    font-size: 28px;
     line-height: 60px;
 
     color: #007aff;
     background: #f8f8f8;
 }
 
+#user-contact-info .top span {
+}
 
 #user-contact-info .top .edit {
     float: right;
@@ -380,7 +382,7 @@ main footer .icon-cc-head {
     border-radius: 14px;
     background: #5cb85c;
 }
-#user-contact-info .prevent-call {
+#user-contact-info .delete-call {
     margin: 10px 0;
 
     font-size: 24px;
