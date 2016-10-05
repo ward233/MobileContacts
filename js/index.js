@@ -37,32 +37,36 @@ $(document).ready(function() {
                 this.show = false;
                 newContactVm.show = true;
             }
+        },
+        ready: function() {
+            $(this.$el).css('visibility', 'visible');
         }
 
     });
+
     var newContactVm = new Vue({
         el: '#new-contact',
         data: {
             show: false,
-            userName: "",
             dataNum: 0,
-            phoneList: [],
-            phoneRing: "默认",
-            phoneShock: "默认",
-            userInfo: {}
+            userInfo: {
+                userName: "",
+                phoneList: [],
+                phoneRing: "默认",
+                phoneShock: "默认"
+            }
 
         },
         methods: {
             initInfo: function() {
-                this.userName = "";
+                this.userInfo.userName = "";
                 this.dataNum = 0;
-                this.phoneList = [];
-                this.phoneRing = "默认";
-                this.phoneShock = "默认";
-                this.userInfo = {};
+                this.userInfo.phoneList = [];
+                this.userInfo.phoneRing = "默认";
+                this.userInfo.phoneShock = "默认";
             },
             addPhone: function() {
-                this.phoneList.push({
+                this.userInfo.phoneList.push({
                     dataNum: this.dataNum,
                     phoneType: "住宅",
                     phoneNum: ""
@@ -71,8 +75,7 @@ $(document).ready(function() {
             },
             removePhone: function(event) {
                 var dataNum = $(event.target).parent().parent().attr('data-num');
-                console.log(this.phoneList);
-                this.phoneList = this.phoneList.filter(function(item) {
+                this.userInfo.phoneList = this.userInfo.phoneList.filter(function(item) {
                     return item.dataNum !== parseInt(dataNum);
                 });
             },
@@ -83,18 +86,15 @@ $(document).ready(function() {
 
             },
             save: function() {
-                this.userInfo.userName = this.userName;
-                this.userInfo.phoneList = this.phoneList;
-                this.userInfo.phoneShock = this.phoneShock;
-                this.userInfo.phoneRing = this.phoneRing;
-                // var userInfoStr = JSON.stringify(this.userInfo);
-                // localStorage.setItem(this.userName, userInfoStr);
-                userLocalInfo.setParseItem(this.userName, this.userInfo);
+                userLocalInfo.setParseItem(this.userInfo.userName, this.userInfo);
                 this.initInfo();
                 this.show = false;
                 mainVm.show = true;
                 mainVm.userList = userLocalInfo.getUserList();
             }
+        },
+        ready: function() {
+            $(this.$el).css('visibility', 'visible');
         }
     });
     var userContactInfoVm = new Vue({
@@ -112,17 +112,17 @@ $(document).ready(function() {
                 this.show = false;
                 newContactVm.show = true;
                 $('#new-contact h1').remove();
-                newContactVm.userName = userContactInfoVm.userInfo.userName;
-                newContactVm.phoneList = userContactInfoVm.userInfo.phoneList;
-                newContactVm.phoneRing = userContactInfoVm.userInfo.phoneRing;
-                newContactVm.phoneShock = userContactInfoVm.userInfo.phoneShock;
+                newContactVm.userInfo.userName = userContactInfoVm.userInfo.userName;
+                newContactVm.userInfo.phoneList = userContactInfoVm.userInfo.phoneList;
+                newContactVm.userInfo.phoneRing = userContactInfoVm.userInfo.phoneRing;
+                newContactVm.userInfo.phoneShock = userContactInfoVm.userInfo.phoneShock;
 
             }
+        },
+        ready: function() {
+            $(this.$el).css('visibility', 'visible');
         }
     });
-
-    $('body').css('visibility', 'visible'); // 用来解决文档先渲染后再执行脚本的隐藏元素闪烁问题
-
 
 
 });
