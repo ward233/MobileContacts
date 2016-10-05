@@ -317,6 +317,9 @@ main footer .icon-cc-head {
 /* 选择铃声样式区 */
 
 /* 新联系人样式区 end */
+
+
+/* 用户详细信息区 start*/
 #user-contact-info header {
     background: #f8f8f8;
 }
@@ -391,3 +394,5 @@ main footer .icon-cc-head {
     border-radius: 14px;
     background: #d9534f;
 }
+
+/* 用户详细信息区 end */
