@@ -1,5 +1,7 @@
 $(document).ready(function() {
-    var getUserList = function() {
+
+    function LocalStorage() {}
+    LocalStorage.prototype.getUserList = function() {
         var userList = [];
         for (var i = 0; i < localStorage.length; i++) {
             userList.push(localStorage.key(i));
@@ -7,18 +9,29 @@ $(document).ready(function() {
         return userList;
     };
 
+    LocalStorage.prototype.setParseItem = function(itemName, itemObjContent) {
+        localStorage.setItem(itemName, JSON.stringify(itemObjContent));
+    };
+
+    LocalStorage.prototype.getParseItem = function(itemName) {
+        return $.parseJSON(localStorage[itemName]);
+    };
+
+    var userLocalInfo = new LocalStorage();
+
+
     var mainVm = new Vue({
         el: '#main',
         data: {
             show: true,
-            userList: getUserList()
+            userList: userLocalInfo.getUserList()
         },
         methods: {
             showUserContactInfo: function(event) {
                 this.show = false;
                 userContactInfoVm.show = true;
-                userContactInfoVm.userInfo = $.parseJSON(localStorage[$.trim($(event.target).text())]);
-                console.log(userContactInfoVm.userInfo);
+                // userContactInfoVm.userInfo = $.parseJSON(localStorage[$.trim($(event.target).text())]);
+                userContactInfoVm.userInfo = userLocalInfo.getParseItem($.trim($(event.target).text()));
             },
             showNewContact: function() {
                 this.show = false;
@@ -74,12 +87,13 @@ $(document).ready(function() {
                 this.userInfo.phoneList = this.phoneList;
                 this.userInfo.phoneShock = this.phoneShock;
                 this.userInfo.phoneRing = this.phoneRing;
-                var userInfoStr = JSON.stringify(this.userInfo);
-                localStorage.setItem(this.userName, userInfoStr);
+                // var userInfoStr = JSON.stringify(this.userInfo);
+                // localStorage.setItem(this.userName, userInfoStr);
+                userLocalInfo.setParseItem(this.userName, this.userInfo);
                 this.initInfo();
                 this.show = false;
                 mainVm.show = true;
-                mainVm.userList = getUserList();
+                mainVm.userList = userLocalInfo.getUserList();
             }
         }
     });
